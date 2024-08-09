@@ -4,7 +4,7 @@ import "./HomePage.css";
 
 export function HomePage() {
   // Define state to store the api data of products
-  // Add code to make a call to the API to fetch the products and store it in the component
+  // Add code to make a call to the API to fetch the products and store it in the component https://fakestoreapi.com/products
 
 
   const isLoading = false
