@@ -17,7 +17,7 @@ export function LoginPage({ onLogin }) {
   };
 
   return (
-    <MDBContainer className="my-5 gradient-form">
+    <MDBContainer className="gradient-form">
       <MDBRow>
         <MDBCol md="5" className="mb-5">
           <div className="d-flex justify-content-center flex-column ms-md-5">

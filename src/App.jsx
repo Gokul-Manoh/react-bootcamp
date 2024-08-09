@@ -28,10 +28,9 @@ function App() {
         isLoggedIn={isLoggedIn}
       />
       <Container>
-        {/* Condition to check if the user is logged in and redirect to homepage or push the user to login page */}
-        {
-          isLoggedIn ? <HomePage /> : <LoginPage onLogin={handleLogin} />
-        }
+        {/* Add condition to check if the user is logged in and redirect to homepage or push the user to login page */}
+        <LoginPage onLogin={handleLogin} />
+        <HomePage /> 
       {/* Routing to be added here */}
       </Container>
     </Router>

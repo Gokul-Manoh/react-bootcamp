@@ -7,7 +7,7 @@ export function HomePage() {
   // Add code to make a call to the API to fetch the products and store it in the component
 
 
-  const isLoading = true
+  const isLoading = false
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -18,7 +18,7 @@ export function HomePage() {
         <Col md={9} className="product-view-col">
           <h2>Home page goes here</h2>
 
-          {/* Add code to show the API data on the UI */}
+          {/* Add code to show the API data on the home page */}
         </Col>
       </Row>
     </Container>
