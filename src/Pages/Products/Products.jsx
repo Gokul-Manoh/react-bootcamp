@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Col, Row } from "react-bootstrap";
-import "./HomePage.css";
+import "./Products.css";
 
-export function HomePage() {
+export function Products() {
   // Define state to store the api data of products
   // Add code to make a call to the API to fetch the products and store it in the component https://fakestoreapi.com/products
 
@@ -16,7 +16,7 @@ export function HomePage() {
     <Container>
       <Row>
         <Col md={9} className="product-view-col">
-          <h2>Home page goes here</h2>
+          <h2>Products page goes here</h2>
 
           {/* Add code to show the API data on the home page */}
         </Col>

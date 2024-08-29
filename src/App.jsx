@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "./components/Header";
-import { HomePage } from "./Pages/HomePage/HomePage";
+import { Products } from "./Pages/Products/Products";
 import { Container } from "react-bootstrap";
 import {
   BrowserRouter as Router,
@@ -30,7 +30,7 @@ function App() {
       <Container>
         {/* Add condition to check if the user is logged in and redirect to homepage or push the user to login page */}
         <LoginPage onLogin={handleLogin} />
-        <HomePage /> 
+        <Products /> 
       {/* Routing to be added here */}
       </Container>
     </Router>
