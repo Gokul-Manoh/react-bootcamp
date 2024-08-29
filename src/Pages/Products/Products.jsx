@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import "./HomePage.css";
+import "./Products.css";
 
-export function HomePage() {
+export function Products() {
   // Define state to store the api data of products
   // Add code to make a call to the API to fetch the products and store it in the component https://fakestoreapi.com/products
 
