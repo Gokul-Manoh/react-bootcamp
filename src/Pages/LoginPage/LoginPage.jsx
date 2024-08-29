@@ -1,61 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LoginPage.css";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBInput,
-} from "mdb-react-ui-kit";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { InputField } from "../../components/InputField/InputField";
 
 export function LoginPage({ onLogin }) {
-  // use state to store the login credentials
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
-  const handleLogin = () => {
-    // Check the validity of the credentials
-    onLogin("johnd")
+  const validateForm = () => {
+    const newErrors = {};
+    if (!email) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = "Email is invalid";
+    if (!password) newErrors.password = "Password is required";
+    else if (password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
+    return newErrors;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+    } else {
+      setErrors({});
+      try {
+        // const userData = await login(email, password);
+        onLogin(email);
+        console.log("Login successful:");
+
+        // Here you would typically store the user data and redirect
+      } catch (error) {
+        setErrors({ form: "Login failed. Please try again." });
+      }
+    }
   };
 
   return (
-    <MDBContainer className="gradient-form">
-      <MDBRow>
-        <MDBCol md="5" className="mb-5">
-          <div className="d-flex justify-content-center flex-column ms-md-5">
-            <div className="text-center">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                style={{ width: "185px" }}
-                alt="logo"
-              />
-              <h4 className="mt-1 mb-5 pb-1">EKart</h4>
-            </div>
-
-            <p>Please login to your account</p>
-
-            <MDBInput
-              wrapperClass="mb-4"
-              placeholder="Username/Email Address"
-              id="txtusername"
+    <div className="login-container">
+      <p>Please login to your account</p>
+      <div>
+        <form onSubmit={handleSubmit} noValidate>
+          <h2>Login</h2>
+          <div>
+            <InputField
               type="email"
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              errorMsg={errors.email}
             />
-            <MDBInput
-              wrapperClass="mb-4"
-              placeholder="Password"
-              id="txtpassword"
-              type="password"
-            />
-
-            <div className="text-center pt-1 mb-5 pb-1">
-              <button
-                className="mb-4 w-100 gradient-custom-2"
-                onClick={handleLogin}
-              >
-                Sign in
-              </button>
-            </div>
           </div>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+          <div>
+            <InputField
+              type="password"
+              label="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              errorMsg={errors.password}
+            />
+          </div>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
