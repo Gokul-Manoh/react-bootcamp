@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LoginPage.css";
-import { MDBContainer, MDBRow, MDBCol, MDBInput } from "mdb-react-ui-kit";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { InputField } from "../../components/InputField/InputField";
 
 export function LoginPage({ onLogin }) {
-  // use state to store the login credentials
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -29,7 +27,8 @@ export function LoginPage({ onLogin }) {
       setErrors({});
       try {
         // const userData = await login(email, password);
-        console.log("Login successful:", email);
+        onLogin(email);
+        console.log("Login successful:");
 
         // Here you would typically store the user data and redirect
       } catch (error) {
@@ -39,8 +38,36 @@ export function LoginPage({ onLogin }) {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <p>Please login to your account</p>
+      <div>
+        <form onSubmit={handleSubmit} noValidate>
+          <h2>Login</h2>
+          <div>
+            <InputField
+              type="email"
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              errorMsg={errors.email}
+            />
+          </div>
+          <div>
+            <InputField
+              type="password"
+              label="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              errorMsg={errors.password}
+            />
+          </div>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
