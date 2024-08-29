@@ -5,16 +5,11 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-import {
-  FaUser,
-} from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import "./Header.css";
+import { Button } from "react-bootstrap";
 
-export function Header({
-  username,
-  onLogout,
-  isLoggedIn,
-}) {
+export function Header({ username, onLogout, isLoggedIn }) {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -30,16 +25,9 @@ export function Header({
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {isLoggedIn ? (
-              <NavDropdown
-                title={
-                  <>
-                    {<FaUser />} {username}
-                  </>
-                }
-                id="basic-nav-dropdown"
-              >
-                <NavDropdown.Item onClick={onLogout}>Logout</NavDropdown.Item>
-              </NavDropdown>
+              <Button variant="outline-light" onClick={onLogout}>
+                Logout
+              </Button>
             ) : (
               ""
             )}
